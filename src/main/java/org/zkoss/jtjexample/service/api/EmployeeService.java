@@ -10,7 +10,7 @@ public interface EmployeeService {
 	int getEmployeeIndex(Employee employee);
 	int getTotalEmployees();
 	
-	boolean addEmployee(Employee employee);
-	boolean updateEmployee(Employee employee);
-	boolean removeEmployee(Employee employee);
+	boolean addEmployee(String modelId, Employee employee);
+	boolean updateEmployee(String modelId, Employee employee);
+	boolean removeEmployee(String modelId, Employee employee);
 }

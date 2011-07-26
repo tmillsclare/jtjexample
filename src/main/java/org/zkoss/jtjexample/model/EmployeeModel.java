@@ -1,5 +1,7 @@
 package org.zkoss.jtjexample.model;
 
+import java.util.UUID;
+
 import org.zkoss.jtjexample.EmployeeEvent;
 import org.zkoss.jtjexample.bean.Employee;
 import org.zkoss.jtjexample.service.EmployeeServiceProvider;
@@ -22,6 +24,7 @@ public class EmployeeModel extends AbstractListModel implements
 	private EmployeeService _employeeService = EmployeeServiceProvider.INSTANCE
 			.getEmployeeService();
 	
+	private final String _myModelId = UUID.randomUUID().toString();
 	
 
 	public EmployeeModel() {
@@ -35,11 +38,17 @@ public class EmployeeModel extends AbstractListModel implements
 				}
 				
 				EmployeeEvent empEvent = (EmployeeEvent)event;
-				int index = indexOf(_employeeService.getEmployeeIndex(empEvent.getEmployee()));
-				fireEvent(empEvent.getEventType(), index, index);
+				
+				if(!_myModelId.equals(empEvent.getModelId())) {
+					fireEvent(empEvent.getEventType(), empEvent.getIndexStart(), empEvent.getIndexEnd());
+				}
 			}
 			
 		});
+	}
+	
+	public String getModelId() {
+		return _myModelId;
 	}
 
 	public Object getElementAt(int index) {
@@ -51,15 +60,15 @@ public class EmployeeModel extends AbstractListModel implements
 	}
 
 	public boolean add(Employee employee) {
-		return _employeeService.addEmployee(employee);
+		return _employeeService.addEmployee(_myModelId, employee);
 	}
 	
 	public boolean update(Employee employee) {
-		return _employeeService.updateEmployee(employee);
+		return _employeeService.updateEmployee(_myModelId, employee);
 	}
 
 	public boolean remove(Employee employee) {
-		return _employeeService.removeEmployee(employee);
+		return _employeeService.removeEmployee(_myModelId, employee);
 	}
 
 	public int indexOf(Object obj) {

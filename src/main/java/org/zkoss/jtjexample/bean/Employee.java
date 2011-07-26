@@ -2,7 +2,7 @@ package org.zkoss.jtjexample.bean;
 
 import java.util.UUID;
 
-public class Employee {
+public class Employee implements Cloneable {
 	private String _uuid, _firstName, _lastName;
 	private int _age;
 	
@@ -67,5 +67,10 @@ public class Employee {
 		sb.append("}");
 		
 		return sb.toString();
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

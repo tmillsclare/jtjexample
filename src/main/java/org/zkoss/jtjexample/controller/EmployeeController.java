@@ -31,7 +31,11 @@ public class EmployeeController extends GenericForwardComposer {
 	}
 
 	public void setCurrentEmployee(Employee currentEmployee) {
-		this._currentEmployee = currentEmployee;
+		try {
+			this._currentEmployee = (Employee) currentEmployee.clone();
+		} catch (CloneNotSupportedException e) {
+			this._currentEmployee = currentEmployee;
+		}
 	}
 
 	public ListModel getEmployeeModel() {
@@ -58,6 +62,10 @@ public class EmployeeController extends GenericForwardComposer {
 
 			Employee employee = (Employee) (lstEmployee.getSelectedItem()
 					.getValue());
+			
+			employee.setFirstName(txtFirstName.getText());
+			employee.setLastName(txtLastName.getText());
+			employee.setAge(Integer.parseInt(intAge.getText()));
 
 			if (!_model.update(employee)) {
 				reportError("Unable to update employee", employee);
