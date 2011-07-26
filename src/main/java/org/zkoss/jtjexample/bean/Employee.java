@@ -13,12 +13,8 @@ public class Employee {
 		_age = age;
 	}
 
-	public String getUuid() {
+	public String getId() {
 		return _uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this._uuid = uuid;
 	}
 
 	public String getFirstName() {
@@ -50,7 +46,7 @@ public class Employee {
 		if(!(obj instanceof Employee)) return false;
 		
 		Employee employee = (Employee)obj;
-		return this._uuid.equals(employee.getUuid());
+		return this._uuid.equals(employee.getId());
 	}
 
 	@Override
@@ -61,7 +57,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("Employee {uuid = ");
-		sb.append(getUuid());
+		sb.append(getId());
 		sb.append(", firstName = ");
 		sb.append(getFirstName());
 		sb.append(", lastName = ");
