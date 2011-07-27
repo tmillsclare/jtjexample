@@ -5,7 +5,7 @@
 <div id="employeediv" apply="org.zkoss.jtjexample.controller.EmployeeController"
 	hflex="true">
 	<listbox id="lstEmployee" multiple="true" rows="5"
-		model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick, btnUpdateEmployee.onClick'}"
+		model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick' save-when='btnUpdateEmployee.onClick'}"
 		selectedItem="@{employeediv$composer.currentEmployee}">
 		<auxhead>
 			<auxheader label="Employees" colspan="4" />
