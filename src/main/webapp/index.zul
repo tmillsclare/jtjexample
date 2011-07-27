@@ -5,7 +5,7 @@
 <div id="employeediv" apply="org.zkoss.jtjexample.controller.EmployeeController"
 	hflex="true">
 	<listbox id="lstEmployee" multiple="true" rows="5"
-		model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick' save-when='btnUpdateEmployee.onClick'}"
+		model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick'}"
 		selectedItem="@{employeediv$composer.currentEmployee}">
 		<auxhead>
 			<auxheader label="Employees" colspan="4" />
@@ -28,13 +28,13 @@
 		<caption label="Employee" />
 		First Name:
 		<textbox id="txtFirstName" cols="25"
-			value="@{employeediv$composer.currentEmployee.firstName}" />
+			value="@{employeediv$composer.currentEmployee.firstName save-when='btnUpdateEmployee.onClick'}" />
 		Last Name:
 		<textbox id="txtLastName" cols="25"
-			value="@{employeediv$composer.currentEmployee.lastName}" />
+			value="@{employeediv$composer.currentEmployee.lastName save-when='btnUpdateEmployee.onClick'}" />
 		Age:
 		<intbox id="intAge" cols="1"
-			value="@{employeediv$composer.currentEmployee.age}" />
+			value="@{employeediv$composer.currentEmployee.age save-when='btnUpdateEmployee.onClick'}" />
 		<button id="btnAddEmployee" label="Add" width="36px"
 			height="24px" />
 		<button id="btnUpdateEmployee" label="Update" width="36px"

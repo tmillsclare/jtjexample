@@ -30,13 +30,7 @@ public class EmployeeController extends GenericForwardComposer {
 		return _currentEmployee;
 	}
 
-	public void setCurrentEmployee(Employee currentEmployee) {
-		/*try {
-			this._currentEmployee = (Employee) currentEmployee.clone();
-		} catch (CloneNotSupportedException e) {
-			this._currentEmployee = currentEmployee;
-		}*/
-		
+	public void setCurrentEmployee(Employee currentEmployee) {		
 		this._currentEmployee = currentEmployee;
 	}
 
