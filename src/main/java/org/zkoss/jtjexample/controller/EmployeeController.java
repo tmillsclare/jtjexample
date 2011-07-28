@@ -2,6 +2,7 @@ package org.zkoss.jtjexample.controller;
 
 import org.zkoss.jtjexample.bean.Employee;
 import org.zkoss.jtjexample.model.EmployeeModel;
+import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.jtjexample.utils.UiUtils;
 import org.zkoss.util.logging.Log;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
@@ -48,7 +49,7 @@ public class EmployeeController extends GenericForwardComposer {
 		Employee employee = new Employee(firstName, lastName, iAge);
 
 		if (!_model.add(employee)) {
-			reportError("Unable to add employee", employee);
+			reportError(Messages.getString("EmployeeController.0"), employee); //$NON-NLS-1$
 		}
 
 	}
@@ -64,10 +65,10 @@ public class EmployeeController extends GenericForwardComposer {
 			employee.setAge(Integer.parseInt(intAge.getText()));
 
 			if (!_model.update(employee)) {
-				reportError("Unable to update employee", employee);
+				reportError(Messages.getString("EmployeeController.1"), employee); //$NON-NLS-1$
 			}
 		} else {
-			UiUtils.showMessage("Please select an employee");
+			UiUtils.showMessage(Messages.getString("EmployeeController.2")); //$NON-NLS-1$
 		}
 	}
 
@@ -78,17 +79,17 @@ public class EmployeeController extends GenericForwardComposer {
 					.getValue());
 
 			if (!_model.remove(employee)) {
-				reportError("Unable to delete employee", employee);
+				reportError(Messages.getString("EmployeeController.3"), employee); //$NON-NLS-1$
 			}
 
 		} else {
-			UiUtils.showMessage("Please select an employee!");
+			UiUtils.showMessage(Messages.getString("EmployeeController.4")); //$NON-NLS-1$
 		}
 
 	}
 
 	private void reportError(String message, Employee employee) {
-		StringBuilder sb = new StringBuilder(message).append(", ").append(
+		StringBuilder sb = new StringBuilder(message).append(Messages.getString("EmployeeController.5")).append( //$NON-NLS-1$
 				employee);
 		final String error = sb.toString();
 

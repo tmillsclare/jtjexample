@@ -6,6 +6,7 @@ import org.zkoss.jtjexample.EmployeeEvent;
 import org.zkoss.jtjexample.bean.Employee;
 import org.zkoss.jtjexample.service.EmployeeServiceProvider;
 import org.zkoss.jtjexample.service.api.EmployeeService;
+import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.EventQueue;
@@ -28,13 +29,13 @@ public class EmployeeModel extends AbstractListModel implements
 	
 
 	public EmployeeModel() {
-		EventQueue eq = EventQueues.lookup("employee", EventQueues.APPLICATION, true);
+		EventQueue eq = EventQueues.lookup(Messages.getString("EmployeeModel.0"), EventQueues.APPLICATION, true); //$NON-NLS-1$
 		
 		eq.subscribe(new EventListener() {
 
 			public void onEvent(Event event) throws Exception {
 				if(!(event instanceof EmployeeEvent)) {
-					throw new IllegalArgumentException("The employee eventqueue must only contain EmployeeEvents");
+					throw new IllegalArgumentException(Messages.getString("EmployeeModel.1")); //$NON-NLS-1$
 				}
 				
 				EmployeeEvent empEvent = (EmployeeEvent)event;

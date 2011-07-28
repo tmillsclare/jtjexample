@@ -8,24 +8,25 @@ import javax.swing.event.ListDataEvent;
 import org.zkoss.jtjexample.EmployeeEvent;
 import org.zkoss.jtjexample.bean.Employee;
 import org.zkoss.jtjexample.service.api.EmployeeService;
+import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.zk.ui.event.EventQueue;
 import org.zkoss.zk.ui.event.EventQueues;
 
 public class EmployeeServiceImpl implements EmployeeService {
 	
 	private final List<Employee> _employees = new ArrayList<Employee>();
-	private final EventQueue eq = EventQueues.lookup("employee", EventQueues.APPLICATION, true);
+	private final EventQueue eq = EventQueues.lookup(Messages.getString("EmployeeServiceImpl.0"), EventQueues.APPLICATION, true);  
 	
 	public EmployeeServiceImpl() {
-		_employees.add(new Employee("Harold", "Rogers", 24));
-		_employees.add(new Employee("Roger", "Knight", 20));
-		_employees.add(new Employee("David", "Collins", 30));
+		_employees.add(new Employee(Messages.getString("EmployeeServiceImpl.1"), Messages.getString("EmployeeServiceImpl.2"), 24));   //$NON-NLS-2$
+		_employees.add(new Employee(Messages.getString("EmployeeServiceImpl.3"), Messages.getString("EmployeeServiceImpl.4"), 20));   //$NON-NLS-2$
+		_employees.add(new Employee(Messages.getString("EmployeeServiceImpl.5"), Messages.getString("EmployeeServiceImpl.6"), 30));   //$NON-NLS-2$
 	}
 	
 	public Employee getEmployee(int index) {
 		
 		if(index >= _employees.size()) {
-			throw new IllegalArgumentException("Index cannot be larger than the employee numbers");
+			throw new IllegalArgumentException(Messages.getString("EmployeeServiceImpl.7"));  
 		}
 		
 		return _employees.get(index);
@@ -38,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean addEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException("employee cannot be null");
+			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
 		}
 		
 		int index = _employees.size();
@@ -55,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean updateEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException("employee cannot be null");
+			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
 		}
 		
 		boolean ret = false;
@@ -80,7 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean removeEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException("employee cannot be null");
+			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
 		}
 		
 		int index = _employees.indexOf(employee);
