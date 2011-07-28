@@ -10,7 +10,7 @@ public class EmployeeEvent extends Event {
 	 */
 	private static final long serialVersionUID = 3357970626839071425L;
 	
-	private static final String eventName = Messages.getString("EmployeeEvent.0"); //$NON-NLS-1$
+	private static final String eventName = Messages.getString("EmployeeEvent.0");
 	
 	private String _modelId;
 	private int _eventType, _indexStart, _indexEnd;

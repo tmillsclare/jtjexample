@@ -49,7 +49,7 @@ public class EmployeeController extends GenericForwardComposer {
 		Employee employee = new Employee(firstName, lastName, iAge);
 
 		if (!_model.add(employee)) {
-			reportError(Messages.getString("EmployeeController.0"), employee); //$NON-NLS-1$
+			reportError(Messages.getString("EmployeeController.0"), employee);
 		}
 
 	}
@@ -65,10 +65,10 @@ public class EmployeeController extends GenericForwardComposer {
 			employee.setAge(Integer.parseInt(intAge.getText()));
 
 			if (!_model.update(employee)) {
-				reportError(Messages.getString("EmployeeController.1"), employee); //$NON-NLS-1$
+				reportError(Messages.getString("EmployeeController.1"), employee);
 			}
 		} else {
-			UiUtils.showMessage(Messages.getString("EmployeeController.2")); //$NON-NLS-1$
+			UiUtils.showMessage(Messages.getString("EmployeeController.2"));
 		}
 	}
 
@@ -79,18 +79,17 @@ public class EmployeeController extends GenericForwardComposer {
 					.getValue());
 
 			if (!_model.remove(employee)) {
-				reportError(Messages.getString("EmployeeController.3"), employee); //$NON-NLS-1$
+				reportError(Messages.getString("EmployeeController.3"), employee);
 			}
 
 		} else {
-			UiUtils.showMessage(Messages.getString("EmployeeController.4")); //$NON-NLS-1$
+			UiUtils.showMessage(Messages.getString("EmployeeController.4"));
 		}
 
 	}
 
 	private void reportError(String message, Employee employee) {
-		StringBuilder sb = new StringBuilder(message).append(Messages.getString("EmployeeController.5")).append( //$NON-NLS-1$
-				employee);
+		StringBuilder sb = new StringBuilder(message).append(Messages.getString("EmployeeController.5")).append(employee);
 		final String error = sb.toString();
 
 		UiUtils.showMessage(error);

@@ -9,10 +9,13 @@ import org.zkoss.jtjexample.EmployeeEvent;
 import org.zkoss.jtjexample.bean.Employee;
 import org.zkoss.jtjexample.service.api.EmployeeService;
 import org.zkoss.jtjexample.utils.Messages;
+import org.zkoss.util.logging.Log;
 import org.zkoss.zk.ui.event.EventQueue;
 import org.zkoss.zk.ui.event.EventQueues;
 
 public class EmployeeServiceImpl implements EmployeeService {
+	
+	private static final Log log = Log.lookup(EmployeeServiceImpl.class);
 	
 	private final List<Employee> _employees = new ArrayList<Employee>();
 	private final EventQueue eq = EventQueues.lookup(Messages.getString("EmployeeServiceImpl.0"), EventQueues.APPLICATION, true);  
@@ -39,7 +42,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean addEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
+			String error = Messages.getString("EmployeeServiceImpl.8");
+			NullPointerException npe = new NullPointerException(error);
+			log.error(npe);
+			throw npe;  
 		}
 		
 		int index = _employees.size();
@@ -56,7 +62,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean updateEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
+			String error = Messages.getString("EmployeeServiceImpl.8");
+			NullPointerException npe = new NullPointerException(error);
+			log.error(npe);
+			throw npe; 
 		}
 		
 		boolean ret = false;
@@ -81,7 +90,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public synchronized boolean removeEmployee(String modelId, Employee employee) {
 		
 		if(employee == null) {
-			throw new NullPointerException(Messages.getString("EmployeeServiceImpl.8"));  
+			String error = Messages.getString("EmployeeServiceImpl.8");
+			NullPointerException npe = new NullPointerException(error);
+			log.error(npe);
+			throw npe;
 		}
 		
 		int index = _employees.indexOf(employee);
