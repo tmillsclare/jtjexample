@@ -1,13 +1,13 @@
 package org.zkoss.jtjexample.controller;
 
 import org.zkoss.jtjexample.bean.Employee;
-import org.zkoss.jtjexample.model.EmployeeModel;
 import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.jtjexample.utils.UiUtils;
 import org.zkoss.util.logging.Log;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.ListModel;
+import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
@@ -21,7 +21,7 @@ public class EmployeeController extends GenericForwardComposer {
 	private static final Log log = Log.lookup(EmployeeController.class);
 
 	private Employee _currentEmployee;
-	private EmployeeModel _model = new EmployeeModel();
+	private ListModelList _model = new ListModelList();
 
 	Listbox lstEmployee;
 	Textbox txtFirstName, txtLastName;
@@ -63,10 +63,6 @@ public class EmployeeController extends GenericForwardComposer {
 			employee.setFirstName(txtFirstName.getText());
 			employee.setLastName(txtLastName.getText());
 			employee.setAge(Integer.parseInt(intAge.getText()));
-
-			if (!_model.update(employee)) {
-				reportError(Messages.getString("EmployeeController.1"), employee);
-			}
 		} else {
 			UiUtils.showMessage(Messages.getString("EmployeeController.2"));
 		}
