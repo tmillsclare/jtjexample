@@ -1,6 +1,7 @@
 package org.zkoss.jtjexample.controller;
 
 import org.zkoss.jtjexample.bean.Employee;
+import org.zkoss.jtjexample.service.EmployeeService;
 import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.jtjexample.utils.UiUtils;
 import org.zkoss.util.logging.Log;
@@ -21,7 +22,7 @@ public class EmployeeController extends GenericForwardComposer {
 	private static final Log log = Log.lookup(EmployeeController.class);
 
 	private Employee _currentEmployee;
-	private ListModelList _model = new ListModelList();
+	private ListModelList _model = EmployeeService.INSTANCE.getModel();
 
 	Listbox lstEmployee;
 	Textbox txtFirstName, txtLastName;

@@ -1,45 +1,49 @@
 <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./employeediv"?>
 
-<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?page title="Employee manager" contentType="text/html;charset=UTF-8"?>
 
-<div id="employeediv" apply="org.zkoss.jtjexample.controller.EmployeeController"
+<div id="employeediv"
+	apply="org.zkoss.jtjexample.controller.EmployeeController"
 	hflex="true">
-	<listbox id="lstEmployee" multiple="true" rows="5"
-		model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick'}"
-		selectedItem="@{employeediv$composer.currentEmployee}">
-		<auxhead>
-			<auxheader label="Employees" colspan="4" />
-		</auxhead>
-		<listhead>
-			<listheader label="ID" width="150px" />
-			<listheader label="First Name" width="300px" />
-			<listheader label="Last Name" width="300px" />
-			<listheader label="Age" width="150px" />
-		</listhead>
-		<listitem self="@{each='employee'}" value="@{employee}">
-			<listcell label="@{employee.id}" />
-			<listcell label="@{employee.firstName}" />
-			<listcell label="@{employee.lastName}" />
-			<listcell label="@{employee.age}" />
-		</listitem>
-	</listbox>
 
-	<groupbox>
-		<caption label="Employee" />
-		First Name:
-		<textbox id="txtFirstName" cols="25"
-			value="@{employeediv$composer.currentEmployee.firstName save-when='btnUpdateEmployee.onClick'}" />
-		Last Name:
-		<textbox id="txtLastName" cols="25"
-			value="@{employeediv$composer.currentEmployee.lastName save-when='btnUpdateEmployee.onClick'}" />
-		Age:
-		<intbox id="intAge" cols="1"
-			value="@{employeediv$composer.currentEmployee.age save-when='btnUpdateEmployee.onClick'}" />
-		<button id="btnAddEmployee" label="Add" width="36px"
-			height="24px" />
-		<button id="btnUpdateEmployee" label="Update" width="36px"
-			height="24px" />
-		<button id="btnDeleteEmployee" label="Delete" width="46px"
-			height="24px" />
-	</groupbox>
+	<vlayout>
+		<listbox id="lstEmployee" multiple="true" rows="5"
+			model="@{employeediv$composer.getEmployeeModel, load-after='btnAddEmployee.onClick, btnDeleteEmployee.onClick'}"
+			selectedItem="@{employeediv$composer.currentEmployee}">
+			<auxhead>
+				<auxheader label="Employees" colspan="4" />
+			</auxhead>
+			<listhead>
+				<listheader label="ID" hflex="2" />
+				<listheader label="First Name" hflex="3" />
+				<listheader label="Last Name" hflex="3" />
+				<listheader label="Age" hflex="1" />
+			</listhead>
+			<listitem self="@{each='employee'}" value="@{employee}">
+				<listcell label="@{employee.id}" />
+				<listcell label="@{employee.firstName}" />
+				<listcell label="@{employee.lastName}" />
+				<listcell label="@{employee.age}" />
+			</listitem>
+		</listbox>
+
+		<groupbox hflex="true">
+			<caption label="Employee" />
+			First Name:
+			<textbox id="txtFirstName" cols="20" constraint="no empty"
+				value="@{employeediv$composer.currentEmployee.firstName save-when='btnUpdateEmployee.onClick'}" />
+			Last Name:
+			<textbox id="txtLastName" cols="20"  constraint="no empty"
+				value="@{employeediv$composer.currentEmployee.lastName save-when='btnUpdateEmployee.onClick'}" />
+			Age:
+			<intbox id="intAge" cols="3"  constraint="no empty, no zero"
+				value="@{employeediv$composer.currentEmployee.age save-when='btnUpdateEmployee.onClick'}" />
+			<button id="btnAddEmployee" label="Add" width="60px"
+				height="24px" />
+			<button id="btnUpdateEmployee" label="Update" width="60px"
+				height="24px" />
+			<button id="btnDeleteEmployee" label="Delete" width="60px"
+				height="24px" />
+		</groupbox>
+	</vlayout>
 </div>
