@@ -5,6 +5,7 @@ import org.zkoss.jtjexample.service.EmployeeService;
 import org.zkoss.jtjexample.utils.Messages;
 import org.zkoss.jtjexample.utils.UiUtils;
 import org.zkoss.util.logging.Log;
+import org.zkoss.zk.ui.event.ForwardEvent;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Intbox;
 import org.zkoss.zul.ListModel;
@@ -41,7 +42,7 @@ public class EmployeeController extends GenericForwardComposer {
 	}
 
 	// click events
-	public void onClick$btnAddEmployee() {
+	public void onClick$btnAddEmployee(ForwardEvent fe) {
 
 		String firstName = txtFirstName.getText();
 		String lastName = txtLastName.getText();
@@ -55,7 +56,7 @@ public class EmployeeController extends GenericForwardComposer {
 
 	}
 
-	public void onClick$btnUpdateEmployee() {
+	public void onClick$btnUpdateEmployee(ForwardEvent fe) {
 		if (lstEmployee.getSelectedItem() != null) {
 
 			Employee employee = (Employee) (lstEmployee.getSelectedItem()
@@ -69,7 +70,7 @@ public class EmployeeController extends GenericForwardComposer {
 		}
 	}
 
-	public void onClick$btnDeleteEmployee() {
+	public void onClick$btnDeleteEmployee(ForwardEvent fe) {
 
 		if (lstEmployee.getSelectedItem() != null) {
 			Employee employee = (Employee) (lstEmployee.getSelectedItem()
